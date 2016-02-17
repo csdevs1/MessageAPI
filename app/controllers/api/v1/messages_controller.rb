@@ -14,7 +14,7 @@ module Api
             end
             
             def create 
-                respond_with Message.create(params[:message])
+                respond_with Message.create(message_params)
             end
             
             def update
@@ -23,6 +23,11 @@ module Api
             
             def destroy
                 respond_with Message.destroy(params[:id])
+            end
+            
+            private 
+            def message_params 
+                params.require(:message).permit(:content) 
             end
         end
     end
